@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐱 Miau Finance — Boss Presentation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@400;600;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  /* Floating cats background */
+  .floating-cats { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .float-cat { position: absolute; font-family: monospace; white-space: pre; line-height: 1.1; opacity: 0.15; animation: floatCat linear infinite; }
+  @keyframes floatCat { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.15; } 85% { opacity: 0.15; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+  @keyframes floatMiau { 0% { transform: translateY(0) rotate(0deg); } 25% { transform: translateY(-15px) rotate(3deg); } 75% { transform: translateY(10px) rotate(-2deg); } 100% { transform: translateY(0) rotate(0deg); } }
+  .content-wrap { position: relative; z-index: 1; }
+  .slide {
+    min-height: 100vh;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0,255,136,0.1);
+    position: relative;
+    z-index: 1;
+  }
+  .slide-content {
+    max-width: 1400px;
+    width: 100%;
+  }
+  h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 4rem;
+    color: #00ff88;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(0,255,136,0.3);
+  }
+  h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    color: #00ff88;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h3 {
+    font-size: 1.2rem;
+    color: #00cc77;
+    margin: 30px 0 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .tagline {
+    text-align: center;
+    color: #00ff88;
+    font-size: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 30px 0;
+    opacity: 0.8;
+  }
+  .hero-cat {
+    text-align: center;
+    font-size: 6rem;
+    margin: 20px 0;
+    line-height: 1;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+  }
+  .stat-card {
+    background: rgba(0,255,136,0.05);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #00ff88;
+  }
+  .stat-label {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 30px 0;
+  }
+  .app-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s;
+  }
+  .app-card:hover {
+    border-color: rgba(0,255,136,0.4);
+    background: rgba(0,255,136,0.05);
+    transform: translateY(-2px);
+  }
+  .app-card h3 {
+    color: #00ff88;
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+  }
+  .app-card .port {
+    color: #666;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+  }
+  .app-card p {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  .app-card .features {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .app-card .features li {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: 16px;
+    margin-bottom: 4px;
+  }
+  .screenshot-container {
+    margin: 30px 0;
+    border: 1px solid rgba(0,255,136,0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.3);
+  }
+  .screenshot-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .screenshot-container .caption {
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #888;
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(0,255,136,0.1);
+  }
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 30px 0;
+  }
+  .feature-box {
+    background: rgba(0,255,136,0.03);
+    border: 1px solid rgba(0,255,136,0.12);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .feature-box h4 {
+    color: #00cc77;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  .feature-box p {
+    color: #999;
+    font-size: 0.85rem;
+  }
+
+  .nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    border-bottom: 1px solid rgba(0,255,136,0.15);
+    padding: 10px 20px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+  }
+  .nav-bar a {
+    color: #666;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-bar a:hover {
+    color: #00ff88;
+    background: rgba(0,255,136,0.1);
+  }
+  .feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .feature-item {
+    background: rgba(0,255,136,0.03);
+    border: 1px solid rgba(0,255,136,0.1);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .feature-item .icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .feature-item .text strong {
+    color: #00ff88;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .feature-item .text span {
+    color: #999;
+    font-size: 0.85rem;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(0,255,136,0.15);
+    color: #00ff88;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: 8px;
+  }
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .slide { padding: 30px 16px; }
+    .feature-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="floating-cats" id="floatCats"></div>
+<div class="content-wrap">
+<nav class="nav-bar">
+  <a href="#overview">🐱 Overview</a>
+  <a href="#terminal">💻 Terminal UI</a>
+  <a href="#education">📚 Education</a>
+  <a href="#ecosystem">🏢 Ecosystem</a>
+  <a href="#marketing">📊 Marketing</a>
+  <a href="#servicedesk">🚒 Service Desk</a>
+  <a href="#ceo">📈 CEO Dashboard</a>
+  <a href="#pawdenity">🐾 Auth</a>
+  <a href="#more">🌐 More Apps</a>
+  <a href="#barks">🐕 Barks</a>
+  <a href="#chonk">🐱 Chonk</a>
+  <a href="#compliance">📋 Compliance</a>
+  <a href="#catstack">🐱 CatStack</a>
+  <a href="#value">💰 Value</a>
+  <a href="#vs">🐱 vs 📋</a>
+  <a href="#vsmicrosoft">🐱 vs 🪟</a>
+  <a href="#vsapple">🐱 vs 🍎</a>
+  <a href="#linux">🐱 ❤️ 🐧</a>
+  <a href="#vsit">🐱 vs 🏢 IT</a>
+  <a href="#vsconsultant">🐱 vs 👔</a>
+  <a href="#vscat">🐱 vs 🐱</a>
+  <a href="#catiscat">🐱 is 🐱</a>
+  <a href="#catlovescat">🐱 ❤️ 🐱</a>
+</nav>
+
+<!-- ============ TITLE ============ -->
+<div class="slide" id="overview">
+  <div class="slide-content">
+    <div class="hero-cat">
+      ╱|、<br>
+     (˚ˎ 。7<br>
+      |、˜〵<br>
+      じしˍ,)ノ
+    </div>
+    <h1>MIAU FINANCE</h1>
+    <div class="tagline">"Where cats trade stocks and portfolios purr with delight"</div>
+    <p class="subtitle">🐱 A Purrantir-Inspired Financial Analytics Ecosystem — v2.5.0</p>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number">13</div><div class="stat-label">Live Apps & Services</div></div>
+      <div class="stat-card"><div class="stat-number">544</div><div class="stat-label">API Endpoints</div></div>
+      <div class="stat-card"><div class="stat-number">230</div><div class="stat-label">Courses & Certifications</div></div>
+      <div class="stat-card"><div class="stat-number">196</div><div class="stat-label">Terminal Commands</div></div>
+      <div class="stat-card"><div class="stat-number">39</div><div class="stat-label">Data Feeds</div></div>
+      <div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Broker Integrations</div></div>
+    </div>
+
+    <h2 style="margin-top:50px">📋 The Full Ecosystem</h2>
+    <div class="app-grid">
+      <a href="http://localhost:5173" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>💻 Terminal UI</h3>
+        <p>Cat-themed Bloomberg terminal — 206 commands, 19 data providers, AI advisor, 3D globe, trading simulator</p>
+      </a>
+      <a href="http://localhost:5174" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>📚 Education Platform</h3>
+        <p>230 courses, 18 certifications — finance, DeFi, AI, blockchain, quantum</p>
+      </a>
+      <a href="http://localhost:5175" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>🏢 Ecosystem Site</h3>
+        <p>Miau Corp — 4-way Bloomberg comparison, pricing tiers, interactive canvas universe</p>
+      </a>
+      <a href="http://localhost:5176" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>📊 Marketing Dashboard</h3>
+        <p>Analytics, KPIs, traffic trends, campaign tracking, SEO monitoring</p>
+      </a>
+      <a href="http://localhost:5180" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>🚒 Service Desk</h3>
+        <p>Cat Fire Brigade — ticket system, emergency siren, cat firefighters, live status</p>
+      </a>
+      <a href="http://localhost:5182" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>📈 CEO Dashboard</h3>
+        <p>Boss Cash Numbers — killable numbers, gunshot sounds, skull animations, coin bursts</p>
+      </a>
+      <a href="http://localhost:5190" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>🐾 Pawdenity Auth</h3>
+        <p>Central SSO — one account for all tools, cross-origin token relay</p>
+      </a>
+      <a href="#more" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>🌐 More Apps</h3>
+        <p>LogViewer (5177), MiauBook (5178), Admin Panel (5179), Cat Galaxy (5181), Homepage (3001)</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TERMINAL UI ============ -->
+<div class="slide" id="terminal">
+  <div class="slide-content">
+    <h2>💻 Terminal UI</h2>
+    <p style="color:#888;margin-bottom:10px">The heart of Miau Finance — a cat-themed Bloomberg terminal for the modern age</p>
+
+    <div class="feature-row">
+      <div class="feature-box">
+        <h4>🐱 196 Terminal Commands</h4>
+        <p>Insider trading, short interest, options chains, technical indicators (48 from Alpha Vantage), macro data, AI analysis, calculators, and more</p>
+      </div>
+      <div class="feature-box">
+        <h4>🖥️ Kittyland Panels</h4>
+        <p>Floating draggable panels — type <code>price AAPL -p</code> to open any command output in a persistent, pinnable panel. Like Hyprland, but inside your terminal.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🐱 Miau DatChonk</h4>
+        <p>Background data eater on port 8765. 45 cached entries, refreshes every 30s. <code>price AAPL</code> is instant. <code>price AAPL -l</code> is live. Chonk never forgets.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🌍 World Map & 3D Globe</h4>
+        <p>Leaflet 2D map with 40+ exchanges, 50K+ company markers, ISS tracking, weather radar. And a GPU-accelerated 3D WebGL globe with cat constellations!</p>
+      </div>
+      <div class="feature-box">
+        <h4>🤖 AI Advisor</h4>
+        <p>8 AI commands — summary, sentiment, insight, report, allocation, risk, trade, chooser. Powered by GPT-4 and Claude.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📈 Real-Time Trading</h4>
+        <p>5 order types, paper trading, slippage & commission simulation. 6 brokers: Alpaca, IBKR, DEGIRO, Saxo, Rakuten, Zerodha.</p>
+      </div>
+    </div>
+
+      <div class="screenshot-container">
+      <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-01-main-terminal.png" alt="Terminal UI Main" loading="lazy"></a>
+      <div class="caption">🐱 Main Terminal Interface — CRT scanlines, green phosphor glow, 206 commands, 19 data providers <a href="http://localhost:5173" target="_blank" style="color:#00ff88">→ Open Live</a></div>
+    </div>
+
+    <h3>🌍 World Map 🐱</h3>
+      <div class="screenshot-container">
+      <a href="#"><img src="screenshots/map.png" alt="Map Company" loading="lazy"></a>
+      <div class="caption">🐱🗺️ World Map — Click a company to see real-time data, location &amp; market info</div>
+    </div>
+    <div class="screenshot-container">
+      <a href="#"><img src="screenshots/term-04-world-map.png" alt="World Map" loading="lazy"></a>
+      <div class="caption">🗺️ World Map — 40+ exchanges, 50K+ markers, ISS tracking, weather radar</div>
+    </div>
+
+
+
+    <h3>📈 Stocks & Mega Charts</h3>
+    <div class="feature-row">
+      <div class="screenshot-container">
+        <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-07-stock-price.png" alt="Stock AAPL" loading="lazy"></a>
+        <div class="caption">📈 Stock Price — Real-time quotes, fundamentals, technicals via `price TSLA`</div>
+      </div>
+      <div class="screenshot-container">
+        <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-08-chartz.png" alt="Mega Chart" loading="lazy"></a>
+        <div class="caption">📊 chartz AAPL -lm — Mega chart with max detail mode</div>
+      </div>
+    </div>
+
+    <h3>🏦 Catberg & IB Valuations</h3>
+    <div class="feature-row">
+      <div class="screenshot-container">
+        <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-05-catberg.png" alt="Catberg" loading="lazy"></a>
+        <div class="caption">🏦 Catberg Bloomberg — 30+ live-data panels (WEI, N, WCV, GPO, DES, FA...)</div>
+      </div>
+      <div class="screenshot-container">
+        <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-09-sheetz-all.png" alt="Sheetz" loading="lazy"></a>
+        <div class="caption">🏦 sheetz -all AAPL — DCF, WACC, Comps & LBO in one command</div>
+      </div>
+    </div>
+
+    <h3>📉 Technical Analysis</h3>
+    <div class="feature-row">
+      <div class="screenshot-container">
+        <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-10-technicals.png" alt="Technicals" loading="lazy"></a>
+        <div class="caption">📉 Technical Indicators — RSI, MACD, BBANDS, SMA, 48 indicators via `technicals aapl`</div>
+      </div>
+    </div>
+
+    <h3>🐱 Cat Features & Scorecard</h3>
+    <div class="feature-row">
+      <div class="screenshot-container">
+        <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-11-cat-art.png" alt="Cat Art" loading="lazy"></a>
+        <div class="caption">🐱 Cat Commands — ASCII cats, cat reactions, chaos mode, purring portfolio</div>
+      </div>
+      <div class="screenshot-container">
+        <a href="http://localhost:5173" target="_blank"><img src="screenshots/term-15-scorecard.png" alt="Scorecard" loading="lazy"></a>
+        <div class="caption">🏆 Miau Scorecard — Fish earned, purr meter, whisker quality, paw prints</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EDUCATION ============ -->
+<div class="slide" id="education">
+  <div class="slide-content">
+    <h2>📚 Education Platform</h2>
+    <p style="color:#888;margin-bottom:10px">230 courses, 18 certifications — finance, blockchain, AI, and data science</p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="icon">🎓</div>
+        <div class="text"><strong>230 Courses</strong><span>From accounting to quantum finance, DeFi to AI investment research</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">📜</div>
+        <div class="text"><strong>18 Certifications</strong><span>Professional certs in financial analysis, blockchain development, AI trading</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🤖</div>
+        <div class="text"><strong>Terminal Simulator</strong><span>Interactive in-browser terminal for hands-on learning</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🧠</div>
+        <div class="text"><strong>AI-Powered Quizzes</strong><span>Adaptive testing with instant feedback and progress tracking</span></div>
+      </div>
+    </div>
+
+    <div class="screenshot-container">
+      <img src="screenshots/03-education.png" alt="Education Platform" loading="lazy">
+      <div class="caption">🎓 Education Platform — Course Browser with 230 courses across finance, tech, and blockchain</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ECOSYSTEM ============ -->
+<div class="slide" id="ecosystem">
+  <div class="slide-content">
+    <h2>🏢 Ecosystem Site</h2>
+    <p style="color:#888;margin-bottom:10px">Miau Corp — corporate presence, product comparison, and pricing</p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="icon">🐱</div>
+        <div class="text"><strong>Cat vs Dogs Comparison</strong><span>Unfair 4-way comparison: Miau vs Bloomberg, Reuters, TradingView</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">💰</div>
+        <div class="text"><strong>Pricing Tiers</strong><span>Free, Starter, Pro, Fund, Enterprise, Adopt-a-Cat (€33.5M)</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🔐</div>
+        <div class="text"><strong>Pawdenity SSO</strong><span>Single sign-on across all ecosystem apps</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">📱</div>
+        <div class="text"><strong>PWA Support</strong><span>Installable, offline-capable, push notifications</span></div>
+      </div>
+    </div>
+
+    <div class="screenshot-container">
+      <img src="screenshots/04-ecosystem.png" alt="Ecosystem Site" loading="lazy">
+      <div class="caption">🏢 Miau Corp — ecosystem comparison, pricing, and product showcase with interactive canvas universe</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MARKETING ============ -->
+<div class="slide" id="marketing">
+  <div class="slide-content">
+    <h2>📊 Marketing Dashboard</h2>
+    <p style="color:#888;margin-bottom:10px">Analytics, campaigns, SEO, and traffic monitoring</p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="icon">📈</div>
+        <div class="text"><strong>Campaign Tracking</strong><span>Real-time marketing campaign performance metrics</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🔍</div>
+        <div class="text"><strong>SEO Analytics</strong><span>Search rankings, keyword performance, backlink monitoring</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">👥</div>
+        <div class="text"><strong>Traffic Sources</strong><span>Visitor analytics, conversion tracking, user behavior</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🤖</div>
+        <div class="text"><strong>AI Campaign Optimization</strong><span>Automated A/B testing and budget allocation recommendations</span></div>
+      </div>
+    </div>
+
+    <div class="screenshot-container">
+      <img src="screenshots/05-marketing.png" alt="Marketing Dashboard" loading="lazy">
+      <div class="caption">📊 Marketing Dashboard — SEO audit, keyword tracking, page analysis &amp; optimization</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SERVICE DESK ============ -->
+<div class="slide" id="servicedesk">
+  <div class="slide-content">
+    <h2>🚒 Service Desk</h2>
+    <p style="color:#888;margin-bottom:10px">Miau Fire Brigade — ticket system with personality</p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="icon">🎫</div>
+        <div class="text"><strong>Ticket System</strong><span>Full ticket lifecycle with priority, assignment, and status tracking</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🚨</div>
+        <div class="text"><strong>Emergency Siren</strong><span>Real-time alerts with cat-themed emergency responses</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🐱</div>
+        <div class="text"><strong>Cat Firefighters</strong><span>Cat avatars with reactions, hiss buttons, and tuna rewards</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">📊</div>
+        <div class="text"><strong>Live Status</strong><span>System health monitoring, fire count, uptime tracking</span></div>
+      </div>
+    </div>
+
+    <div class="screenshot-container">
+      <img src="screenshots/06-service-desk.png" alt="Service Desk" loading="lazy">
+      <div class="caption">🚒 Miau Fire Brigade — ticket system, cat firefighters, and system status</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CEO DASHBOARD ============ -->
+<div class="slide" id="ceo">
+  <div class="slide-content">
+    <h2>📈 CEO Dashboard</h2>
+    <p style="color:#888;margin-bottom:10px">Boss Cash Numbers — the most satisfying spreadsheet in finance</p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="icon">💀</div>
+        <div class="text"><strong>Killable Numbers</strong><span>Click numbers to destroy them. Gunshot sounds. Skull animations. Pure catharsis.</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🪙</div>
+        <div class="text"><strong>Coin Burst</strong><span>Floating coins, money background, burst animations on interaction</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">📊</div>
+        <div class="text"><strong>CeoScratchSheet</strong><span>Unified dashboard: services, tickets, cat corner, live activity, stats</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🔫</div>
+        <div class="text"><strong>Hiss Persistence</strong><span>Hiss buttons save state. Your frustrations persist across sessions.</span></div>
+      </div>
+    </div>
+
+    <div class="screenshot-container">
+      <img src="screenshots/07-ceo-dashboard.png" alt="CEO Dashboard" loading="lazy">
+      <div class="caption">📈 CEO Dashboard — Boss Cash Numbers with killable numbers, coin bursts, and cat corner</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAWDENITY ============ -->
+<div class="slide" id="pawdenity">
+  <div class="slide-content">
+    <h2>🐾 Pawdenity Auth</h2>
+    <p style="color:#888;margin-bottom:10px">Central SSO — one account to rule all tools</p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="icon">🔑</div>
+        <div class="text"><strong>Single Sign-On</strong><span>Register once, login everywhere. Token works across all 13 apps.</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🔄</div>
+        <div class="text"><strong>Cross-Origin Relay</strong><span>Seamless auth token sharing between subdomains and ports</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">👑</div>
+        <div class="text"><strong>Pawdmin Superadmin</strong><span>Built-in admin account with unlimited rate tier</span></div>
+      </div>
+      <div class="feature-item">
+        <div class="icon">🛡️</div>
+        <div class="text"><strong>RBAC</strong><span>Role-based access control across all services</span></div>
+      </div>
+    </div>
+
+    <div class="screenshot-container">
+      <img src="screenshots/08-pawdenity.png" alt="Pawdenity Auth" loading="lazy">
+      <div class="caption">🐾 Pawdenity — centralized authentication provider with login/register</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MORE APPS ============ -->
+<div class="slide" id="miaupapers">
+  <div class="slide-content">
+    <h2>📜 MiauPapers — 104 Research Papers</h2>
+    <p style="color:#888;margin-bottom:10px">"The Cat's Guide to Modern Finance" — 100+ papers covering 28 phases</p>
+
+    <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-card"><div class="stat-number">104</div><div class="stat-label">Research Papers</div></div>
+      <div class="stat-card"><div class="stat-number">28</div><div class="stat-label">Phases Covered</div></div>
+      <div class="stat-card"><div class="stat-number">5,248</div><div class="stat-label">Lines of Research</div></div>
+      <div class="stat-card"><div class="stat-number">1M+</div><div class="stat-label">Tokens of Analysis</div></div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-box">
+        <h4>📈 Finance & Markets</h4>
+        <p>Options Greeks, factor investing (Fama-French), market microstructure, portfolio optimization, technical analysis, ESG compliance, CBDCs, DeFi mechanics</p>
+      </div>
+      <div class="feature-box">
+        <h4>🤖 AI & Technology</h4>
+        <p>AI strategy generation, RAG pipelines, multi-agent orchestrators, vector search, NLP for earnings calls, the AGI finance roadmap, Miau-1B model</p>
+      </div>
+      <div class="feature-box">
+        <h4>🏗️ Architecture</h4>
+        <p>Real-time pipeline &lt;500ms, caching ladder, Rust performance migration, PWA architecture, 10-container stack, self-healing infrastructure</p>
+      </div>
+      <div class="feature-box">
+        <h4>📘 Full-Length Papers</h4>
+        <p>The Miau Finance Manifesto · The AI Hedge Fund · Miau-1B Model · DAO Governance · Quantum Finance · Post-Quantum Crypto · The Singularity Portfolio · Pawborghini Business Model</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:8px">
+      <div style="background:rgba(0,255,136,0.03); border:1px solid rgba(0,255,136,0.08); border-radius:8px; padding:10px 14px; font-size:0.8rem">
+        <strong style="color:#00cc77">Phase 1-10:</strong>
+        <span style="color:#888"> Terminal UX, AI Advisor, Rust engine, PWA, DeFi, social trading, monetization, privacy, autonomous finance</span>
+      </div>
+      <div style="background:rgba(0,255,136,0.03); border:1px solid rgba(0,255,136,0.08); border-radius:8px; padding:10px 14px; font-size:0.8rem">
+        <strong style="color:#00cc77">Phase 11-20:</strong>
+        <span style="color:#888"> Vector search, real-time pipeline, technical analysis, portfolio optimization, NLP, caching, RBAC, backtesting, gamification, webhooks</span>
+      </div>
+      <div style="background:rgba(0,255,136,0.03); border:1px solid rgba(0,255,136,0.08); border-radius:8px; padding:10px 14px; font-size:0.8rem">
+        <strong style="color:#00cc77">Phase 21-28:</strong>
+        <span style="color:#888"> 68 data sources, alerting, globalization, API platform, CRT design, Docker stack, AI strategy gen, data quality, Rust migration, ESG, DAO, quantum, AGI</span>
+      </div>
+    </div>
+    <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">
+      <div style="background:rgba(255,136,0,0.04);border:1px solid rgba(255,136,0,0.12);border-radius:8px;padding:12px 14px">
+        <div style="color:#ff8800;font-size:0.75rem;font-weight:600;margin-bottom:3px">#71 · Wirecard: The Cat That Cried Fraud</div>
+        <div style="color:#999;font-size:0.7rem">How Miau's AI detected the Wirecard collapse 6 months before it happened. Pattern recognition, balance sheet analysis, and a cat that smelled something fishy.</div>
+      </div>
+      <div style="background:rgba(255,136,0,0.04);border:1px solid rgba(255,136,0,0.12);border-radius:8px;padding:12px 14px">
+        <div style="color:#ff8800;font-size:0.75rem;font-weight:600;margin-bottom:3px">#72 · Trade Republic: The Neobroker Nobody Asked For</div>
+        <div style="color:#999;font-size:0.7rem">A critical look at Germany's favorite neobroker. Payment for order flow, gamification, and why Trade Republic users might need a cat to watch their portfolio.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px 14px">
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600;margin-bottom:3px">#73 · German SaaS: Why We Charge €9,999 for Barks</div>
+        <div style="color:#999;font-size:0.7rem">The economics of feature requests. How Miau turned community feedback into a revenue stream and why €9,999 is the perfect price for a bark.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px 14px">
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600;margin-bottom:3px">#74 · BaFin Compliance for Cat-Operated Fintechs</div>
+        <div style="color:#999;font-size:0.7rem">How Miau generated 12 compliance documents and made BaFin proud. German financial regulation meets cat-powered technology.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px 14px">
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600;margin-bottom:3px">#75 · From Würselen to Wall Street</div>
+        <div style="color:#999;font-size:0.7rem">A small German town, a big cat dream. Miau started in a garage in Würselen. Now it runs on 40 exchanges. The cat still lives in that garage. It just has a Pawborghini now.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="more">
+  <div class="slide-content">
+    <h2>🌐 More Apps in the Ecosystem</h2>
+    <p style="color:#888;margin-bottom:30px">Every piece of the puzzle, working together</p>
+
+    <div class="app-grid">
+      <a href="http://localhost:3001" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>🌐 miau-homepage</h3>
+        <p>Next.js marketing homepage with blog, papers (104), and product showcase</p>
+        <div class="features"><ul><li>MiauPapers — 104 research papers</li><li>Blog with CMS</li><li>SEO optimized</li></ul></div>
+      </a>
+      <a href="http://localhost:5177" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>📋 Log Viewer</h3>
+        <p>Real-time log streaming from all services with search and filtering</p>
+        <div class="features"><ul><li>Live tail</li><li>Service filtering</li><li>JSON log parsing</li></ul></div>
+      </a>
+      <a href="http://localhost:5178" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>📖 Miau Book</h3>
+        <p>Documentation and knowledge base for the entire ecosystem</p>
+        <div class="features"><ul><li>API reference</li><li>User guides</li><li>Architecture docs</li></ul></div>
+      </a>
+      <a href="http://localhost:5179" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>⚙️ Admin Panel</h3>
+        <p>System administration, user management, health monitoring</p>
+        <div class="features"><ul><li>User CRUD</li><li>Provider health</li><li>System config</li></ul></div>
+      </a>
+      <a href="http://localhost:5181" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>🌌 Cat Galaxy</h3>
+        <p>Interactive universe visualization — because finance needs space cats</p>
+        <div class="features"><ul><li>3D galaxy view</li><li>Cat constellations</li><li>Interactive exploration</li></ul></div>
+      </a>
+      <a href="http://localhost:8000/docs" target="_blank" class="app-card" style="text-decoration:none;color:inherit;cursor:pointer">
+        <h3>⚙️ Backend API</h3>
+        <p>FastAPI backend — 544 endpoints, 19 data providers, AI/AGI engine</p>
+        <div class="features"><ul><li>JWT + API key auth</li><li>Rate limiting per tier</li><li>Prometheus metrics</li></ul></div>
+      </a>
+    </div>
+
+    <div style="margin-top:40px">
+      <div class="screenshot-container">
+        <img src="screenshots/09-logviewer.png" alt="Log Viewer" loading="lazy">
+        <div class="caption">📋 Real-time Log Viewer with filtering, search, and live tail</div>
+      </div>
+      <div class="screenshot-container">
+        <img src="screenshots/10-admin-panel.png" alt="Admin Panel" loading="lazy">
+        <div class="caption">⚙️ Admin Panel — system health, service monitoring, log files</div>
+      </div>
+      <div class="screenshot-container">
+        <img src="screenshots/11-miau-book.png" alt="Miau Book" loading="lazy">
+        <div class="caption">📖 Miau Book — documentation and knowledge base</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CHONK ============ -->
+<div class="slide" id="chonk">
+  <div class="slide-content">
+    <h2>🐱 Miau DatChonk — Data Eating Service</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1.05rem">"Chonk never sleeps. Chonk always eats. Chonk serves fast."</p>
+    
+    <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-card"><div class="stat-number">45</div><div class="stat-label">📦 Cached Entries</div></div>
+      <div class="stat-card"><div class="stat-number">29</div><div class="stat-label">📈 Stocks</div></div>
+      <div class="stat-card"><div class="stat-number">8</div><div class="stat-label">₿ Crypto Coins</div></div>
+      <div class="stat-card"><div class="stat-number">8</div><div class="stat-label">💱 FX Pairs</div></div>
+    </div>
+    
+    <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-top:10px">
+      <div class="stat-card"><div class="stat-number" style="font-size:1.5rem">⚡</div><div class="stat-label">Instant Cache Hits</div></div>
+      <div class="stat-card"><div class="stat-number" style="font-size:1.5rem">🔄</div><div class="stat-label">Refreshes Every 30s</div></div>
+      <div class="stat-card"><div class="stat-number" style="font-size:1.5rem">💾</div><div class="stat-label">Persistent Storage</div></div>
+      <div class="stat-card"><div class="stat-number" style="font-size:1.5rem">🌐</div><div class="stat-label">Own Web Page :8765</div></div>
+    </div>
+
+    <div class="feature-grid" style="margin-top:16px">
+      <div class="feature-item"><strong>🐱 What is Chonk?</strong><span>A standalone background service that continuously pre-fetches market data from free APIs. The main backend checks Chonk first before calling Yahoo Finance — making price lookups <strong>instant</strong>.</span></div>
+      <div class="feature-item"><strong>⚡ How to Use</strong><span><code>price AAPL</code> → instant from cache · <code>price AAPL -l</code> → live from Yahoo Finance · <code>chonk</code> → status</span></div>
+      <div class="feature-item"><strong>📈 Stocks (29)</strong><span>AAPL, TSLA, MSFT, GOOGL, AMZN, NVDA, META, SPY, QQQ, JPM, V, WMT, JNJ, PG, DIS, NFLX, ADBE, CRM, INTC, AMD, BAC, PFE, KO, PEP, NKE, MRK, ABNB, UBER, SNAP</span></div>
+      <div class="feature-item"><strong>₿ Crypto (8)</strong><span>Bitcoin · Ethereum · Solana · Cardano · Ripple · Polkadot · Dogecoin · Avalanche</span></div>
+      <div class="feature-item"><strong>💱 FX (8)</strong><span>EUR · GBP · JPY · CHF · CAD · AUD · NZD · CNY</span></div>
+      <div class="feature-item"><strong>💾 Never Forgets</strong><span>Persistent cache to disk (<code>/tmp/chonk_db.json</code>). Survives restarts. Chonk is reliable. Chonk is chonk.</span></div>
+    </div>
+    <div class="screenshot-container" style="margin-top:20px">
+      <a href="http://localhost:8765" target="_blank"><img src="screenshots/chonk.png" alt="DatChonk" loading="lazy"></a>
+      <div class="caption">🐱 Miau DatChonk — 45 entries cached, food rain, chonky cat, all the data <a href="http://localhost:8765" target="_blank" style="color:#ff8800">→ Open Chonk</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COMPLIANCE ============ -->
+<div class="slide" id="compliance">
+  <div class="slide-content">
+    <h2>📋 Compliance? Compliant. All Standards. 🐱</h2>
+    <p style="color:#888;margin-bottom:20px;font-size:1.1rem">"A cat cannot be bitten by paper." — Ancient Miau Wisdom</p>
+    <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">GDPR Compliant</div></div>
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">BaFin Ready</div></div>
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">MiFID II Aligned</div></div>
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">ESG Reporting</div></div>
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">ISO 27001</div></div>
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">SOC 2 Type II</div></div>
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">PCI DSS</div></div>
+      <div class="stat-card"><div class="stat-number">✅</div><div class="stat-label">DORA Ready</div></div>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-item"><strong>🐾 No Paper, All Purr</strong><span>Digital-first architecture means no paperwork to lose. Cats don't do paperwork. Neither do we.</span></div>
+      <div class="feature-item"><strong>🔐 Data Residency</strong><span>EU hosting by default. Your data stays where you are. The cat respects borders (but judges them silently).</span></div>
+      <div class="feature-item"><strong>📜 Audit Trail</strong><span>Every trade, every command, every miau is logged immutably. The cat remembers everything.</span></div>
+      <div class="feature-item"><strong>🛡️ PQC Ready</strong><span>Post-quantum cryptography (CRYSTALS-Kyber/Dilithium) — future-proof against quantum attacks. The cat plans ahead.</span></div>
+      <div class="feature-item"><strong>🏦 BaFin-Ready</strong><span>Designed with German financial regulation in mind. The cat follows rules. Mostly.</span></div>
+      <div class="feature-item"><strong>🌍 ESG Built In</strong><span>Carbon tracking, green bonds, sustainability scores. The cat cares about the planet (between naps).</span></div>
+    </div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:20px;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:0.85rem">
+      <pre style="color:#555;text-align:right;line-height:1.4">
+╱|、
+(˚ˎ 。7
+|、˜〵
+じしˍ,)ノ</pre>
+      <span style="color:#555">"The only thing we're guilty of is being this awesome."</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BARK FEATURES ============ -->
+<div class="slide" id="barks">
+  <div class="slide-content">
+    <h2>🐕 Bark Features — You Bark, We Build 🐱</h2>
+    <p style="color:#888;margin-bottom:20px;font-size:1.05rem">"Barks are not bugs. They're feature requests. With cat attitude."</p>
+    <div class="feature-grid">
+      <div class="feature-item"><strong>💬 What is a Bark?</strong><span>A feature request. Type <code>billing bark &lt;title&gt;</code> in the terminal and your idea becomes a ticket. The cat reads every single one. (Probably.)</span></div>
+      <div class="feature-item"><strong>📦 Included in Every Plan</strong><span>Free: 0 barks · Pro: 1 bark · Fund: 2 barks · Enterprise: 10 barks. Extra barks: €9,999 each. (Yes, that's intentional.)</span></div>
+      <div class="feature-item"><strong>🏆 Bark Hall of Fame</strong><span>Top-voted barks get built. The community decides what the cat builds next. Democracy, but with more tuna.</span></div>
+      <div class="feature-item"><strong>📋 160+ Commands Built</strong><span>Every command in Miau started as a bark (or a meow). From <code>chartz3d</code> to <code>sheetz -all</code> — you asked, the cat delivered.</span></div>
+      <div class="feature-item"><strong>🐱 Cat-Approved Roadmap</strong><span>The ROADMAP.md and BARK.md are public. See what's coming, vote on what matters, watch the cat work.</span></div>
+      <div class="feature-item"><strong>💰 "Barks Not Bites"</strong><span>Community feature governance — the more you contribute, the more barks you earn. The cat rewards loyalty.</span></div>
+    </div>
+    <p style="text-align:center;color:#555;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:0.8rem">
+      🐕 "A bark a day keeps the competitor away." — Satisfied Customer (probably a cat)
+    </p>
+  </div>
+</div>
+
+<!-- ============ CATSTACK ============ -->
+<div class="slide" id="catstack">
+  <div class="slide-content">
+    <h2>🐱 The CatStack — Cat Stacked on Cat</h2>
+    <p style="color:#888;margin-bottom:10px;font-size:1.05rem">"Cat can be stacked, on top and next to each other. Running on an old smart fridge. Tech only stacks your bills. Cat is only stacks."</p>
+    
+    <div class="feature-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.15)">
+        <strong>🐱 1. Application</strong>
+        <span>React 18 + TypeScript + Vite 6. Fast, type-safe, hot-reloaded. The cat doesn't wait for compilation.</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.15)">
+        <strong>🐱 2. Database</strong>
+        <span>PostgreSQL 16 + SQLAlchemy 2.0 + Alembic. Async, migratable, reliable. The cat's data never sleeps.</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.15)">
+        <strong>🐱 3. Logic</strong>
+        <span>Python 3.14 + FastAPI + 544 endpoints. 19 data providers, Rust-powered analytics, AGI core. The cat thinks in microservices.</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.15)">
+        <strong>🐱 4. UI</strong>
+        <span>CRT scanlines, green phosphor glow, 196 commands, Kittyland panels, 3D WebGL globe. The cat has style.</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.15)">
+        <strong>🐱 5. Functions</strong>
+        <span>Trading engines, risk calculators, AI agents, portfolio optimizers, real-time data pipelines. The cat executes.</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(255,136,0,0.15)">
+        <strong>🐱 6. Cats</strong>
+        <span>Cat reactions, purr meters, tuna wallets, miaus, chaos mode, cat army, ASCII art everywhere. The cat is the platform.</span>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:14px;text-align:center">
+        <div style="font-size:1.5rem;margin-bottom:4px">🐱⬆️🐱</div>
+        <div style="color:#00cc77;font-size:0.8rem;font-weight:600">Stacks Vertically</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">Cat on cat on cat. More cats = more power. Stack 'em up.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:14px;text-align:center">
+        <div style="font-size:1.5rem;margin-bottom:4px">🐱➡️🐱</div>
+        <div style="color:#00cc77;font-size:0.8rem;font-weight:600">Stacks Horizontally</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">Cats side by side. Microservices? No. Just cats next to cats.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+      <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,68,68,0.15);border-radius:8px;padding:14px;text-align:center">
+        <div style="color:#ef4444;font-size:0.75rem;font-weight:600;margin-bottom:4px">❌ Tech</div>
+        <div style="color:#666;font-size:0.7rem">Kubernetes · 47 microservices · 12 databases · 3 cloud providers · 6 monitoring tools · 2 DevOps engineers · 1 burnout</div>
+        <div style="color:#ef4444;font-size:0.7rem;margin-top:6px">= stacks your bills 📈</div>
+      </div>
+      <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.15);border-radius:8px;padding:14px;text-align:center">
+        <div style="color:#00ff88;font-size:0.75rem;font-weight:600;margin-bottom:4px">✅ Cat</div>
+        <div style="color:#888;font-size:0.7rem">Python · React · Postgres · One cat · Runs on a smart fridge · Zero DevOps · Infinite purrs</div>
+        <div style="color:#00ff88;font-size:0.7rem;margin-top:6px">= stacks only cats 📦🐱</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:#555;line-height:1.8">
+      <span style="color:#00ff88">🐱 Application</span> + <span style="color:#22d3ee">🐱 Database</span> + <span style="color:#a855f7">🐱 Logic</span> + <span style="color:#facc15">🐱 UI</span> + <span style="color:#ff8800">🐱 Functions</span> + <span style="color:#ff69b4">🐱 Cats</span><br>
+      <span style="color:#444;font-size:0.7rem">= 6 Miaus · Full Stack · All Cat · No Dog · Runs on Fridge</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VALUE ============ -->
+<div class="slide" id="value">
+  <div class="slide-content">
+    <h2>💰 Cat Isn't Cheap. But Neither Is Your iPhone.</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">You don't bark about the price of your iPhone. So why bark about Miau?</p>
+
+    <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:2.5rem">€49</div>
+        <div class="stat-label">Pro Plan / month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:2.5rem">€24K</div>
+        <div class="stat-label">Bloomberg / year</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:2.5rem">€22K</div>
+        <div class="stat-label">Reuters / year</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="font-size:2.5rem">99.9%</div>
+        <div class="stat-label">Cat Uptime</div>
+      </div>
+    </div>
+
+    <div class="feature-grid" style="margin-top:16px">
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.12)">
+        <strong>📱 iPhone Comparison</strong>
+        <span>You pay €1,200 for a phone that lasts 3 years. Miau costs €588/year and gives you 40+ exchanges, AI analysis, and a cat that trades for you. Who's the real bargain?</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.12)">
+        <strong>🏦 Bloomberg Comparison</strong>
+        <span>Bloomberg Terminal costs €24,000/year. Miau Pro costs €588/year. That's 40x cheaper. And Miau has cats. Bloomberg has... a customer support line? The cat is not impressed.</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.12)">
+        <strong>🔓 Free Tier</strong>
+        <span>30 commands/day, 5 data providers, 2 concurrent connections. Enough to try. Not enough to ignore. The cat hooks you with the free tuna, then you pay for the good stuff.</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.12)">
+        <strong>🐱 Enterprise</strong>
+        <span>On-premise deployment, SSO, custom integrations, dedicated support, SLA, and unlimited barks. The cat comes to your office. (The cat prefers working from home.)</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(0,255,136,0.12)">
+        <strong>🎯 What You Get</strong>
+        <span>196 terminal commands · 544 API endpoints · 230 courses · 104 research papers · 6 broker integrations · 19 data providers · Kittyland panels · Miau DatChonk · AGI finance core · Rust analytics · Post-quantum crypto · Cat army</span>
+      </div>
+      <div class="feature-item" style="border-color:rgba(255,136,0,0.15)">
+        <strong>🐱 The Cat's Promise</strong>
+        <span>"Cat isn't cheap. But cat delivers. You don't bark about the price of your iPhone. So why bark about Miau? Meow."
+        <br><span style="color:#ff8800;font-size:0.7rem">— The Cat, probably</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT VS SERVICENOW ============ -->
+<div class="slide" id="vs">
+  <div class="slide-content">
+    <h2>🐱 Cat vs 📋 ServiceNow</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"ServiceNow is lots of service. But you do the service yourself. So why service your service in ServiceNow? So you have ServiceNow on top of your service?"</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:20px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- ServiceNow Side -->
+      <div style="background:rgba(255,68,68,0.03);padding:24px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:16px">
+          <span style="font-size:2.5rem">📋</span>
+          <div style="color:#ef4444;font-size:1.1rem;font-weight:700;margin-top:4px">ServiceNow</div>
+          <div style="color:#555;font-size:0.75rem">Service of your service</div>
+        </div>
+        <div style="font-size:0.75rem;color:#888;line-height:1.8">
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:4px">❌ You do the work</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:4px">❌ ServiceNow manages the work</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:4px">❌ You manage ServiceNow</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:4px">❌ ServiceNow needs updates</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:4px">❌ You update ServiceNow</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:4px;border:1px solid rgba(255,68,68,0.15)">
+            <span style="color:#ef4444;font-weight:600">= You service your service's service</span>
+          </div>
+        </div>
+      </div>
+      <!-- Cat Side -->
+      <div style="background:rgba(0,255,136,0.03);padding:24px">
+        <div style="text-align:center;margin-bottom:16px">
+          <span style="font-size:2.5rem">🐱</span>
+          <div style="color:#00ff88;font-size:1.1rem;font-weight:700;margin-top:4px">Miau</div>
+          <div style="color:#555;font-size:0.75rem">Just miau</div>
+        </div>
+        <div style="font-size:0.75rem;color:#888;line-height:1.8">
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:4px">✅ You do the work</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:4px">✅ Cat does the rest</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:4px">✅ Cat doesn't need managing</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:4px">✅ Cat updates itself</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:4px">✅ Cat doesn't need updates</div>
+          <div style="padding:4px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:4px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= Cat adds only miau 🐱</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,68,68,0.1);border-radius:8px;padding:14px">
+        <div style="color:#ef4444;font-size:1.5rem;margin-bottom:4px">📋</div>
+        <div style="color:#888;font-size:0.7rem">You + ServiceNow + Manage ServiceNow + Update ServiceNow + Pay for ServiceNow = 🔄</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:14px">
+        <div style="color:#666;font-size:1.5rem;margin-bottom:4px">❓</div>
+        <div style="color:#666;font-size:0.7rem">Why service your service in a service that services your service of servicing?</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.1);border-radius:8px;padding:14px">
+        <div style="color:#00ff88;font-size:1.5rem;margin-bottom:4px">🐱</div>
+        <div style="color:#888;font-size:0.7rem">You + Cat = miau. That's it. No service for your service. Just cat. Just miau.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#555">
+      <span style="color:#ff8800">"ServiceNow is lots of service. But you do the service yourself. So why service your service in ServiceNow?<br>So you have ServiceNow on top of your service? Cat adds only miau."</span>
+      <br><span style="color:#444;font-size:0.7rem">— The Cat, while napping on a keyboard</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT VS MICROSOFT ============ -->
+<div class="slide" id="vsmicrosoft">
+  <div class="slide-content">
+    <h2>🐱 Cat vs 🪟 Microsoft</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"Microsoft sells you a subscription for a subscription manager. Cat sells you a miau that does everything."</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- Microsoft Side -->
+      <div style="background:rgba(0,150,255,0.03);padding:20px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🪟</span>
+          <div style="color:#0096ff;font-size:1rem;font-weight:700;margin-top:4px">Microsoft 365</div>
+          <div style="color:#555;font-size:0.7rem">€99/user/mo · 3 apps you actually use</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ Excel: €12/mo (can't do options chains)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ Teams: €8/mo (40 tabs, 0 productivity)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ Azure: €200/mo (need a degree to deploy)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ Copilot: €30/mo (hallucinates your meetings)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px;border:1px solid rgba(255,68,68,0.15)">
+            <span style="color:#ef4444;font-weight:600">= €349/user/mo for spreadsheets and chat</span>
+          </div>
+        </div>
+      </div>
+      <!-- Cat Side -->
+      <div style="background:rgba(0,255,136,0.03);padding:20px">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐱</span>
+          <div style="color:#00ff88;font-size:1rem;font-weight:700;margin-top:4px">Miau Finance</div>
+          <div style="color:#555;font-size:0.7rem">€49/mo · 196 commands · 544 endpoints</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ price AAPL → real-time quote + chart</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ sheetz -all AAPL → DCF + WACC + Comps + LBO</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ One terminal. Zero tabs. Infinite cat.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ No Copilot. No AI upsell. Just miau.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= €49/mo for everything. Including the cat.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,150,255,0.1);border-radius:8px;padding:14px">
+        <div style="color:#0096ff;font-size:1.3rem;margin-bottom:4px">🪟</div>
+        <div style="color:#888;font-size:0.65rem">Microsoft sells you tools to manage your work. Then sells you AI to use the tools. Then sells you training to use the AI. The cat sells you one command.</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:14px">
+        <div style="color:#666;font-size:1.3rem;margin-bottom:4px">⚖️</div>
+        <div style="color:#666;font-size:0.65rem">"But Microsoft is an enterprise platform." So is Miau. It just doesn't need 47 admin panels to configure it.</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.1);border-radius:8px;padding:14px">
+        <div style="color:#00ff88;font-size:1.3rem;margin-bottom:4px">🐱</div>
+        <div style="color:#888;font-size:0.65rem">Cat is 7x cheaper, runs on a fridge, and comes with a built-in AI that doesn't try to sell you a better AI. The cat is enough.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT VS APPLE ============ -->
+<div class="slide" id="vsapple">
+  <div class="slide-content">
+    <h2>🐱 Cat vs 🍎 Apple</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"Apple charges €1,200 for a phone that lasts 3 years. Cat charges €588/year and gives you 40+ exchanges. The math is not mathing for Apple."</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- Apple Side -->
+      <div style="background:rgba(0,0,0,0.05);padding:20px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🍎</span>
+          <div style="color:#ffffff;font-size:1rem;font-weight:700;margin-top:4px">Apple Ecosystem</div>
+          <div style="color:#555;font-size:0.7rem">€5,000+/yr · 3 devices · 0 trading commands</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ iPhone 17 Pro: €1,200 (bends in your pocket)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ MacBook Pro: €2,500 (needs dongles for dongles)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ iCloud: €120/yr (€0.02/GB, really Apple?)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ Apple One: €300/yr (still no stock prices)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px;border:1px solid rgba(255,68,68,0.15)">
+            <span style="color:#ef4444;font-weight:600">= Can't trade. Can't analyze. Can miau? No.</span>
+          </div>
+        </div>
+      </div>
+      <!-- Cat Side -->
+      <div style="background:rgba(0,255,136,0.03);padding:20px">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐱</span>
+          <div style="color:#00ff88;font-size:1rem;font-weight:700;margin-top:4px">Miau Finance</div>
+          <div style="color:#555;font-size:0.7rem">€588/yr · runs on your current laptop · no dongles</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ Real-time stock prices on any device with a terminal</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ AI analysis without buying a new phone every year</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ No iCloud. No App Store tax. No dongles. No drama.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ The cat works on a 2015 ThinkPad. Try that with Apple Intelligence.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= €588/yr. Works on anything. The cat doesn't care about your hardware.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:14px">
+        <div style="color:#666;font-size:1.1rem;margin-bottom:4px">📱</div>
+        <div style="color:#666;font-size:0.65rem">An iPhone costs €1,200 and can't tell you the P/E ratio of Apple. Miau costs €49/mo and can tell you that Apple's P/E is 28.4. The irony is not lost on the cat.</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.1);border-radius:8px;padding:14px">
+        <div style="color:#00ff88;font-size:1.1rem;margin-bottom:4px">🐱</div>
+        <div style="color:#888;font-size:0.65rem">"Innovation" at Apple means a slightly better camera. Innovation at Miau means running DCF models from your terminal while the cat supervises. The cat is the innovator now.</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.1);border-radius:8px;padding:14px">
+        <div style="color:#ffcc00;font-size:1.1rem;margin-bottom:4px">🍎🐱</div>
+        <div style="color:#888;font-size:0.65rem">Apples can't do cat things. But cat runs on Apple. The dev decided it doesn't. So you can spend your cat on Miau instead. Just don't run it. Think about it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT LOVES LINUX ============ -->
+<div class="slide" id="linux">
+  <div class="slide-content">
+    <h2>🐱 Cat ❤️ 🐧 Linux</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"Cat is terminal-native. Linux is terminal-native. Cat and Linux are the same picture. The penguin and the cat are friends."</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+      <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.1);border-radius:10px;padding:16px;text-align:center">
+        <div style="font-size:2rem;margin-bottom:6px">🐧</div>
+        <div style="color:#ffcc00;font-size:0.8rem;font-weight:600;margin-bottom:4px">Terminal Native</div>
+        <div style="color:#888;font-size:0.7rem">Linux lives in the terminal. Miau lives in the terminal. The terminal is the common language of cats and penguins.</div>
+      </div>
+      <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.1);border-radius:10px;padding:16px;text-align:center">
+        <div style="font-size:2rem;margin-bottom:6px">🐱</div>
+        <div style="color:#00ff88;font-size:0.8rem;font-weight:600;margin-bottom:4px">Unix Philosophy</div>
+        <div style="color:#888;font-size:0.7rem">Do one thing well. Miau does finance. Linux runs Miau. Pipe commands, script everything, automate like a cat.</div>
+      </div>
+      <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(136,153,176,0.1);border-radius:10px;padding:16px;text-align:center">
+        <div style="font-size:2rem;margin-bottom:6px">🔧</div>
+        <div style="color:#8899b0;font-size:0.8rem;font-weight:600;margin-bottom:4px">No Vendor Lock</div>
+        <div style="color:#888;font-size:0.7rem">Miau runs on any Linux box. Server, desktop, Raspberry Pi, smart fridge, toaster with SSH. The cat doesn't care. The cat just runs.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- Windows Side -->
+      <div style="background:rgba(0,150,255,0.03);padding:20px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🪟</span>
+          <div style="color:#666;font-size:0.85rem;font-weight:600;margin-top:4px">Windows + Finance</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ Bloomberg terminal: Windows-only, $24K/yr</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ ThinkOrSwim: crashes on update, Java 8 required</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ TradingView: runs in browser, eats your RAM</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px;border:1px solid rgba(255,68,68,0.15)">
+            <span style="color:#ef4444;font-weight:600">= Finance on Windows is pain. The penguin agrees.</span>
+          </div>
+        </div>
+      </div>
+      <!-- Linux Side -->
+      <div style="background:rgba(0,255,136,0.03);padding:20px">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐱</span>
+          <div style="color:#00ff88;font-size:0.85rem;font-weight:600;margin-top:4px">Linux + Miau</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ price AAPL | grep price → $308.82</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ Runs on Alpine, Ubuntu, Arch, NixOS, Termux</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ Scriptable, pipeable, cron-able, cat-able</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= Finance on Linux. The penguin purrs. 🐧</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:8px;padding:12px">
+        <div style="font-size:1.2rem;margin-bottom:2px">🐧</div>
+        <div style="color:#888;font-size:0.6rem">"Linux users have been waiting for a native terminal finance app since 1991. Miau arrived in 2024. The penguin is pleased. The cat took its time."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px">
+        <div style="font-size:1.2rem;margin-bottom:2px">🐱</div>
+        <div style="color:#888;font-size:0.6rem">"`sudo apt install miau-finance` — that's it. No app store. No license key email. No phone home. Just a cat and your terminal."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:12px">
+        <div style="font-size:1.2rem;margin-bottom:2px">🐱🐧</div>
+        <div style="color:#888;font-size:0.6rem">"The cat and the penguin have an agreement: the penguin handles the kernel, the cat handles the finance. Neither touches the other's food."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT VS LINUX ============ -->
+<div class="slide" id="vslinux">
+  <div class="slide-content">
+    <h2>🐱 Cat vs 🐧 Linux</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"Linux is free. So is Miau. Linux has grep. Miau has price AAPL. Linux has awk. Miau has sheetz -all. Linux has 40 years of terminal tools. Miau has a cat that uses them better."</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- Linux Side -->
+      <div style="background:rgba(255,204,0,0.03);padding:20px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐧</span>
+          <div style="color:#ffcc00;font-size:1rem;font-weight:700;margin-top:4px">Linux Command Line</div>
+          <div style="color:#555;font-size:0.7rem">Free · Powerful · 40 years of man pages</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ `grep` finds text, not stock prices</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ `awk` processes columns, not portfolios</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ `sed` replaces strings, not your bad investments</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px">❌ `top` shows processes, not your P&amp;L</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:3px;border:1px solid rgba(255,68,68,0.15)">
+            <span style="color:#ef4444;font-weight:600">= Great tools. Wrong domain. Cat fixes that.</span>
+          </div>
+        </div>
+      </div>
+      <!-- Cat Side -->
+      <div style="background:rgba(0,255,136,0.03);padding:20px">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐱</span>
+          <div style="color:#00ff88;font-size:1rem;font-weight:700;margin-top:4px">Miau Finance</div>
+          <div style="color:#555;font-size:0.7rem">Also terminal · Also free · Also has a cat</div>
+        </div>
+        <div style="font-size:0.7rem;color:#888;line-height:1.8">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ `price AAPL` → real stock price (grep who?)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ `sheetz -all AAPL` → DCF + WACC + Comps + LBO</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ `miaumap --cats` → 3D globe with cats (try that in bash)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px">✅ `dashboard` → your P&amp;L (top was never this green)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:3px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= Linux commands for finance. Finally. 🐱</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:8px;padding:12px">
+        <div style="font-size:1.2rem;margin-bottom:2px">🐧</div>
+        <div style="color:#888;font-size:0.6rem">"Linux has `man` pages. Miau has `help`. Linux's man pages are 40 pages of flags. Miau's help says 'try price AAPL'. The cat respects your time."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px">
+        <div style="font-size:1.2rem;margin-bottom:2px">🐱</div>
+        <div style="color:#888;font-size:0.6rem">"`cat portfolio` — in Linux, this prints your portfolio file. In Miau, it prints your actual portfolio. Linux has been lying to us about what cat does."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:12px">
+        <div style="font-size:1.2rem;margin-bottom:2px">🐱🐧</div>
+        <div style="color:#888;font-size:0.6rem">"The penguin handles the kernel. The cat handles the finance. Together they make the perfect OS: Linux + Miau = Profit. The penguin does not argue with the cat."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT VS YOUR IT DEPARTMENT ============ -->
+<div class="slide" id="vsit">
+  <div class="slide-content">
+    <h2>🐱 Cat vs 🏢 Your IT Department</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"Your IT department manages 47 vendors, 12 SSO integrations, 6 identity providers, and 3 ticketing systems. The cat manages one terminal. One cat rules them all."</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- IT Department Side -->
+      <div style="background:rgba(136,153,176,0.03);padding:20px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🏢</span>
+          <div style="color:#8899b0;font-size:0.9rem;font-weight:700;margin-top:4px">Your IT Department</div>
+          <div style="color:#555;font-size:0.65rem">5 headcount · 47 vendors · 1 burnout</div>
+        </div>
+        <div style="font-size:0.65rem;color:#888;line-height:1.7">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Onboards users via Okta → Azure AD → Slack → Jira → ServiceNow</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Manages 12 different Bloomberg terminals + licenses</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Creates 5 tickets for every software request</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Monthly vendor review meetings (4 hours each)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Q4 budget planning for next year's software renewals</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px;border:1px solid rgba(255,68,68,0.15)">
+            <span style="color:#ef4444;font-weight:600">= 47 vendors · 0 cats · infinite meetings</span>
+          </div>
+        </div>
+      </div>
+      <!-- Cat Side -->
+      <div style="background:rgba(0,255,136,0.03);padding:20px">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐱</span>
+          <div style="color:#00ff88;font-size:0.9rem;font-weight:700;margin-top:4px">Miau Finance</div>
+          <div style="color:#555;font-size:0.65rem">0 headcount · 1 cat · infinite purrs</div>
+        </div>
+        <div style="font-size:0.65rem;color:#888;line-height:1.7">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Onboards users via: "install this. done."</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Zero vendors. Zero licenses. Zero meetings.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ No tickets needed. Type `help` and the cat shows you.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Vendor review: it's a cat. It's fine. Always fine.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Budget: €588/year. That's one coffee machine repair.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= 1 cat · 0 tickets · infinite tuna</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(136,153,176,0.08);border-radius:8px;padding:12px">
+        <div style="color:#8899b0;font-size:1.1rem;margin-bottom:2px">🏢</div>
+        <div style="color:#888;font-size:0.6rem">"IT: We need to add Miau to the approved software list. Legal: We need to review the terms. Security: We need to scan it. Finance: What's the ROI? Cat: 🐱"</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px">
+        <div style="color:#00ff88;font-size:1.1rem;margin-bottom:2px">🐱</div>
+        <div style="color:#888;font-size:0.6rem">"Miau is open source. It runs in a terminal. It doesn't phone home. It doesn't need SSO. It doesn't need a SLA. It just needs a cat. Your IT department can finally nap."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:12px">
+        <div style="font-size:1.1rem;margin-bottom:2px">🐱🏢</div>
+        <div style="color:#888;font-size:0.6rem">"The IT department manages 47 vendors. The cat manages zero. The IT department has 5 headcount. The cat has 1 me. The IT department has meetings. The cat has naps. Who's winning?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT VS IT CONSULTANTS ============ -->
+<div class="slide" id="vsconsultant">
+  <div class="slide-content">
+    <h2>🐱 Cat vs 👔 IT Consultants</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"Consultants bark 2 years in your company. At cat, you bark once, pay €9,999, and the cat designs, implements, deploys, and runs it. If your bark is worth the cat's time."</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- Consultant Side -->
+      <div style="background:rgba(136,153,176,0.03);padding:20px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">👔</span>
+          <div style="color:#8899b0;font-size:0.9rem;font-weight:700;margin-top:4px">IT Consultant</div>
+          <div style="color:#555;font-size:0.65rem">€1,200/day · 2 years · 0 accountability</div>
+        </div>
+        <div style="font-size:0.65rem;color:#888;line-height:1.7">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Month 1-3: Discovery workshops ("we need to understand your business")</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Month 4-6: Architecture design (slides. so many slides.)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Month 7-12: Implementation (outsourced to cheaper consultants)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Month 13-18: Testing ("it's not a bug, it's a feature")</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px">❌ Month 19-24: Handover (500-page documentation nobody reads)</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,68,68,0.05);margin-bottom:2px;border:1px solid rgba(255,68,68,0.15)">
+            <span style="color:#ef4444;font-weight:600">= €480,000 · 2 years · 0 purrs</span>
+          </div>
+        </div>
+      </div>
+      <!-- Cat Side -->
+      <div style="background:rgba(0,255,136,0.03);padding:20px">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐱</span>
+          <div style="color:#00ff88;font-size:0.9rem;font-weight:700;margin-top:4px">Miau Bark</div>
+          <div style="color:#555;font-size:0.65rem">€9,999/bark · 1 day · infinite accountability</div>
+        </div>
+        <div style="font-size:0.65rem;color:#888;line-height:1.7">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ You type: `billing bark "I need feature X"`</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Cat reads it. Cat judges it. Cat builds it or rejects it.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ If accepted: implemented, tested, deployed within days.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ If rejected: €9,999 funds the cat's tuna fund. Fair trade.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ No workshops. No slides. No handover. Just cat.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= €9,999 · 1 bark · infinite purrs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(136,153,176,0.08);border-radius:8px;padding:12px">
+        <div style="color:#8899b0;font-size:1.1rem;margin-bottom:2px">👔</div>
+        <div style="color:#888;font-size:0.6rem">"Consultants bill €1,200/day to tell you what you already know. The cat bills €9,999 to either build what you want or tell you it's a bad idea. Both are cheaper than a consultant."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:8px;padding:12px">
+        <div style="color:#ffcc00;font-size:1.1rem;margin-bottom:2px">🐕</div>
+        <div style="color:#888;font-size:0.6ff">"A bark costs €9,999. A consultant costs €480,000 for 2 years. For the price of one consultant, you can bark 48 times. That's 48 features. The consultant gave you 1 PowerPoint."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px">
+        <div style="color:#00ff88;font-size:1.1rem;margin-bottom:2px">🐱</div>
+        <div style="color:#888;font-size:0.6rem">"Consultants leave after 2 years. You're left with 500 pages of documentation and a system nobody understands. The cat never leaves. The cat is eternal. The cat maintains the system. The cat also accepts tuna."</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#ff8800">
+      "You don't leave cat. Cat leaves you."
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT VS CAT ============ -->
+<div class="slide" id="vscat">
+  <div class="slide-content">
+    <h2>🐱 Cat vs 🐱 Cat — The Only Fair Comparison</h2>
+    <p style="color:#888;margin-bottom:16px;font-size:1rem">"Every other comparison was unfair because cat always wins. So here's cat vs cat. The only fair fight. Cat still wins."</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)">
+      <!-- Other Cat -->
+      <div style="background:rgba(136,153,176,0.03);padding:20px;border-right:1px solid rgba(255,255,255,0.05)">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐈</span>
+          <div style="color:#8899b0;font-size:0.9rem;font-weight:700;margin-top:4px">Other Cats</div>
+          <div style="color:#555;font-size:0.65rem">Grumpy Cat · Nyan Cat · Fat Cat · Copy Cat</div>
+        </div>
+        <div style="font-size:0.65rem;color:#888;line-height:1.7">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,136,0,0.05);margin-bottom:2px">👍 Grumpy Cat: great meme, terrible portfolio manager</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,136,0,0.05);margin-bottom:2px">👍 Nyan Cat: 10/10 music, can't calculate WACC</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,136,0,0.05);margin-bottom:2px">👍 Fat Cat: rich but doesn't share the trading strategy</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,136,0,0.05);margin-bottom:2px">👍 Copy Cat: flattering but legally questionable</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,136,0,0.05);margin-bottom:2px">👍 Cat in a Box: alive, dead, or just vibing?</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(255,136,0,0.05);margin-bottom:2px;border:1px solid rgba(255,136,0,0.15)">
+            <span style="color:#ff8800;font-weight:600">= Great cats. Wrong job. Wrong terminal.</span>
+          </div>
+        </div>
+      </div>
+      <!-- Miau Cat -->
+      <div style="background:rgba(0,255,136,0.03);padding:20px">
+        <div style="text-align:center;margin-bottom:12px">
+          <span style="font-size:2rem">🐱</span>
+          <div style="color:#00ff88;font-size:0.9rem;font-weight:700;margin-top:4px">Miau Cat</div>
+          <div style="color:#555;font-size:0.65rem">Finance Cat · Terminal Cat · Chonk Cat</div>
+        </div>
+        <div style="font-size:0.65rem;color:#888;line-height:1.7">
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Purrs when portfolio is up. Hisses when it's down.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ 196 commands. 544 endpoints. 1 cat. No raster.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Chonky data eater. Never forgets. Never sleeps.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Licensed to trade. Licensed to purr. Licensed to nap.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px">✅ Runs on anything. Even a box. Schródinger's cat trades.</div>
+          <div style="padding:3px 8px;border-radius:4px;background:rgba(0,255,136,0.05);margin-bottom:2px;border:1px solid rgba(0,255,136,0.15)">
+            <span style="color:#00ff88;font-weight:600">= Best cat. Finance cat. Only cat that matters.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,136,0,0.08);border-radius:8px;padding:12px">
+        <div style="color:#ff8800;font-size:1.1rem;margin-bottom:2px">😺</div>
+        <div style="color:#888;font-size:0.6rem">"Grumpy Cat was paid $100K for a commercial. Miau Cat builds you a DCF model AND judges your portfolio. Who's the real celebrity?"</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(0,255,136,0.08);border-radius:8px;padding:12px">
+        <div style="color:#00ff88;font-size:1.1rem;margin-bottom:2px">🐱</div>
+        <div style="color:#888;font-size:0.6rem">"Nyan Cat flew through space for 10 years. Miau Cat flew through 28 phases in 18 months. One has a pop-tart body. The other has a terminal. Both are iconic."</div>
+      </div>
+      <div style="text-align:center;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:12px">
+        <div style="color:#c8d6d0;font-size:1.1rem;margin-bottom:2px">🐱🏆</div>
+        <div style="color:#888;font-size:0.6rem">"In the battle of cats, Miau Cat wins because it's the only cat that can tell you why your portfolio is down. Other cats just knock things off your desk. Miau Cat knocks your losses off your portfolio."</div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#00ff88">
+      🐱 "Cat vs cat. Cat wins. Obviously."
+    </div>
+  </div>
+</div>
+
+<!-- ============ CAT IS CAT ============ -->
+<div class="slide" id="catiscat">
+  <div class="slide-content" style="text-align:center">
+    <div style="font-size:clamp(3rem,8vw,6rem);line-height:1.1;font-family:monospace;color:#00ff88;margin-bottom:10px">
+      🐱
+    </div>
+    <h2 style="justify-content:center;font-size:clamp(2rem,5vw,4rem);margin-bottom:6px">Cat is Cat.</h2>
+    <p style="color:#888;margin-bottom:20px;font-size:1.1rem;max-width:600px;margin-left:auto;margin-right:auto">
+      Cat is not a platform. Cat is not a service. Cat is not a solution. Cat is not a ecosystem.<br>
+      Cat is cat. That's the point.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;max-width:800px;margin:0 auto 20px">
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:1.5rem;margin-bottom:4px">🐱</div>
+        <div style="color:#00cc77;font-size:0.8rem;font-weight:600">Cat is Cat</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">Not a platform. Not a service. Just cat.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:1.5rem;margin-bottom:4px">😸</div>
+        <div style="color:#00cc77;font-size:0.8rem;font-weight:600">Cat is Easy</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">One command. One terminal. One cat. No PhD required.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:1.5rem;margin-bottom:4px">😻</div>
+        <div style="color:#00cc77;font-size:0.8rem;font-weight:600">Cat is UI</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">CRT glow, green phosphor, 196 commands. No tabs. No bloat.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:1.5rem;margin-bottom:4px">🙀</div>
+        <div style="color:#00cc77;font-size:0.8rem;font-weight:600">Cat is Viable</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">544 endpoints. 19 providers. 6 brokers. Real money. Real cat.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:1.5rem;margin-bottom:4px">😺</div>
+        <div style="color:#00cc77;font-size:0.8rem;font-weight:600">Cat is Flexible</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">Runs on a fridge. Scales to 1M users. Both. The cat adapts.</div>
+      </div>
+      <div style="background:rgba(255,136,0,0.04);border:1px solid rgba(255,136,0,0.1);border-radius:10px;padding:14px">
+        <div style="font-size:1.5rem;margin-bottom:4px">🐱</div>
+        <div style="color:#ff8800;font-size:0.8rem;font-weight:600">Cat is Not Cheap</div>
+        <div style="color:#888;font-size:0.7rem;margin-top:4px">Neither is your iPhone. Cat just works better. Think about it.</div>
+      </div>
+    </div>
+    <pre style="font-size:0.6rem;line-height:1.2;color:rgba(0,255,136,0.15);font-family:monospace;margin:10px auto;max-width:200px">
+╱|、
+(˚ˎ 。7
+|、˜〵
+じしˍ,)ノ
+    </pre>
+    <p style="color:#444;font-family:'JetBrains Mono',monospace;font-size:0.8rem">
+      🐱 "Cat is cat. That's all. That's enough."
+    </p>
+  </div>
+</div>
+
+<!-- ============ CAT LOVES CAT ============ -->
+<div class="slide" id="catlovescat">
+  <div class="slide-content" style="text-align:center">
+    <div style="display:flex;justify-content:center;align-items:center;gap:20px;margin-bottom:10px">
+      <pre style="font-size:0.55rem;line-height:1.15;color:rgba(0,255,136,0.2);font-family:monospace;text-align:right">
+╱|、
+(˚ˎ 。7
+|、˜〵
+じしˍ,)ノ
+      </pre>
+      <span style="font-size:3rem;color:#00ff88;opacity:0.5">❤️</span>
+      <pre style="font-size:0.55rem;line-height:1.15;color:rgba(0,255,136,0.2);font-family:monospace;text-align:left">
+  /\_/\
+ ( o.o )
+  > ^ <
+  /ミヽ)
+      </pre>
+    </div>
+    <h2 style="justify-content:center;font-size:clamp(1.5rem,4vw,3rem);margin-bottom:6px">🐱 Cat Loves Cat 🐱</h2>
+    <p style="color:#888;margin-bottom:20px;font-size:1rem;max-width:600px;margin-left:auto;margin-right:auto">
+      Cat loves cat because cat is cat. Not complicated. Not explained. Just felt.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;max-width:900px;margin:0 auto 16px">
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:0.9rem;margin-bottom:4px">🐱❤️🐱</div>
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600">Cat Loves Its Interface</div>
+        <div style="color:#888;font-size:0.65rem;margin-top:3px">CRT glow, green text, autocomplete, 196 commands. Cat made it for cat. Cat uses it. Cat loves it.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:0.9rem;margin-bottom:4px">🐱❤️🐱</div>
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600">Cat Loves Its Data</div>
+        <div style="color:#888;font-size:0.65rem;margin-top:3px">Chonk eats 45 entries every 30s. Never forgets. Never sleeps. Cat built a data eater. Cat loves chonk.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:0.9rem;margin-bottom:4px">🐱❤️🐱</div>
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600">Cat Loves Its Community</div>
+        <div style="color:#888;font-size:0.65rem;margin-top:3px">Barks cost €9,999. Not because cat is greedy. Because cat values quality barks over quantity. Cat loves good barks.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:0.9rem;margin-bottom:4px">🐱❤️🐱</div>
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600">Cat Loves Its Stack</div>
+        <div style="color:#888;font-size:0.65rem;margin-top:3px">6 miaus. Full stack. All cat. No dog. Runs on a fridge. Catstack is not a buzzword. Catstack is literally cats stacked on cats.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:0.9rem;margin-bottom:4px">🐱❤️🐱</div>
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600">Cat Loves Its Papers</div>
+        <div style="color:#888;font-size:0.65rem;margin-top:3px">104 MiauPapers. From quantum finance to Wirecard. With jokes. The cat wrote them. The cat approved them. The cat loves them.</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.03);border:1px solid rgba(0,255,136,0.08);border-radius:10px;padding:14px">
+        <div style="font-size:0.9rem;margin-bottom:4px">🐱❤️🐱</div>
+        <div style="color:#00cc77;font-size:0.75rem;font-weight:600">Cat Loves You</div>
+        <div style="color:#888;font-size:0.65rem;margin-top:3px">Yes, you. Reading this. Cat built all of this for you. Cat doesn't always show it. But cat loves you. Now go trade something.</div>
+      </div>
+    </div>
+    <pre style="font-size:0.5rem;line-height:1.1;color:rgba(0,255,136,0.1);font-family:monospace;margin:5px auto">
+      ╱|、            ╱|、
+     (˚ˎ 。7   ❤️   (˚ˎ 。7
+      |、˜〵          |、˜〵
+      じしˍ,)ノ      じしˍ,)ノ
+    </pre>
+    <p style="color:#333;font-family:'JetBrains Mono',monospace;font-size:0.7rem;margin-top:5px">
+      🐱❤️🐱 · cat loves cat · always has · always will
+    </p>
+  </div>
+</div>
+
+<!-- ============ TECH STACK ============ -->
+<div class="slide" id="tech">
+  <div class="slide-content">
+    <h2>⚡ Technology Stack</h2>
+    <p class="subtitle">Built with modern, battle-tested technologies</p>
+
+    <div class="feature-row">
+      <div class="feature-box">
+        <h4>🎨 Frontend</h4>
+        <p>React 18 · TypeScript 5.5 · Vite 6 · TailwindCSS · Three.js (WebGL globe) · Leaflet (2D maps) · Recharts · Framer Motion · PWA</p>
+      </div>
+      <div class="feature-box">
+        <h4>⚙️ Backend</h4>
+        <p>Python 3.14 · FastAPI · SQLAlchemy 2.0 · Alembic · PostgreSQL 16 · Redis · MinIO · Pydantic · OpenAPI (544 endpoints)</p>
+      </div>
+      <div class="feature-box">
+        <h4>🧠 AI & Analytics</h4>
+        <p>OpenAI GPT-4 · Anthropic Claude · Custom AGI Engine · RAG Pipeline · 21 AI Agents · Multi-Agent Orchestrator · Vector Search</p>
+      </div>
+      <div class="feature-box">
+        <h4>📊 Infrastructure</h4>
+        <p>Docker · Kubernetes · Grafana · Prometheus · Apache Superset · Cube.js · Airflow · MinIO (S3) · Netlify</p>
+      </div>
+      <div class="feature-box">
+        <h4>🔐 Security</h4>
+        <p>JWT + RBAC · API Keys · Rate Limiting (per tier) · CORS · CSP · CSRF · PQC (CRYSTALS-Kyber/Dilithium) · WalletConnect v2</p>
+      </div>
+      <div class="feature-box">
+        <h4>📱 Mobile</h4>
+        <p>PWA Installable · Offline Mode · Push Notifications · Responsive (320px+) · Touch Gestures · Dark Mode</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ============ FOOTER ============ -->
+<div class="slide" style="border-bottom:none">
+  <div class="slide-content" style="text-align:center">
+    <div class="hero-cat" style="font-size:3rem">
+      ╱|、<br>
+     (˚ˎ 。7<br>
+      |、˜〵<br>
+      じしˍ,)ノ
+    </div>
+    <p style="color:#444;font-family:'JetBrains Mono',monospace;font-size:0.85rem">
+      Miau Finance v2.5.0 — Built with 🐱 and ☕<br>
+      <span style="color:#222">"Cats don't have strategies. They have vibes. We do both."</span>
+    </p>
+  </div>
+</div>
+</div> <!-- end content-wrap -->
+
+<script>
+  // Floating cats background
+  const cats = [
+    ['  ╱|、',' (˚ˎ 。7','  |、˜〵','  じしˍ,)ノ'],
+    ['  /\\_/\\',' ( o.o )','  > ^ < ','  /ミヽ)'],
+    ['  ∧＿∧',' ( ･ω･)','  ⊂　 つ','   (  ⌒)'],
+    ['  ╱|、',' (˶˃ ᵕ ˂˶)','  |、˜〵','  じしˍ,)ノ'],
+    ['  /\\_/\\',' ( x x )','  > ^ < ','  /ミヽ)'],
+    ['  ╱|、',' (◕‿◕)','  |、˜〵','  じしˍ,)ノ'],
+  ];
+  const miaus = ['miau!','meow~','nya~','MIAU!','purr...','mrrow!','mew','🐱','🐈','😸','😻','🙀'];
+  const container = document.getElementById('floatCats');
+  for(let i=0;i<20;i++) {
+    const el = document.createElement('div');
+    el.className = 'float-cat';
+    if(i < 12) {
+      const art = cats[i % cats.length];
+      el.textContent = art.join('\n');
+    } else {
+      el.textContent = '🐱 ' + miaus[Math.floor(Math.random()*miaus.length)] + ' 🐱';
+      el.style.fontSize = (0.7 + Math.random() * 0.5) + 'rem';
+    }
+    el.style.left = (3 + Math.random() * 94) + '%';
+    el.style.fontSize = el.style.fontSize || (0.4 + Math.random() * 0.5) + 'rem';
+    el.style.animationDuration = (20 + Math.random() * 25) + 's';
+    el.style.animationDelay = -(Math.random() * 30) + 's';
+    el.style.color = ['#00ff88','#ff8800','#22d3ee','#a855f7','#ef4444','#facc15','#ff69b4','#00ffaa'][i % 8];
+    container.appendChild(el);
+  }
+
+  // Smooth scroll for nav
+  document.querySelectorAll('.nav-bar a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
